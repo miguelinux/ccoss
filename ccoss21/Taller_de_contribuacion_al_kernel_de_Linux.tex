@@ -1,0 +1,83 @@
+% ex: ts=2 sw=2 sts=2 et filetype=tex
+% SPDX-License-Identifier: CC-BY-SA-4.0
+\documentclass[aspectratio=169]{beamer}
+
+\usetheme{Boadilla}
+
+\definecolor{ccosscolor}{rgb}{0.0, 0.545, 0.545}
+\usecolortheme[named=ccosscolor]{structure}
+
+\setbeamertemplate{navigation symbols}{} % To remove the navigation symbols from the bottom of all slides
+
+\graphicspath{{../img/}}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc} %% https://tex.stackexchange.com/questions/664/why-should-i-use-usepackaget1fontenc
+\usepackage{graphicx} % Allows including images
+\usepackage{listings}
+
+\title{Taller de contribución al kernel de Linux} % The short title appears at the bottom of every slide,
+                                               % the full title is only on the title page
+\author[\textcircled{cc} BY-SA]{Miguel Bernal Marin} % Your name
+
+\institute[]
+{
+Cumbre de Contribuidores de Open Source Software
+}
+\date{
+  7 de Octubre de 2021
+} 
+
+\logo{\includegraphics[height=0.5cm]{logo-ccoss_corto.png}}
+\newcommand{\nologo}{\setbeamertemplate{logo}{}} % command to set the logo to nothing
+
+%New colors defined below
+\definecolor{codeBakground}{rgb}{0.95,0.95,0.92}
+\definecolor{codeComment}{rgb}{0.0, 0.0, 1.0}
+\definecolor{codeKeyword}{rgb}{0.647, 0.165, 0.165}
+\definecolor{codeKeyword2}{rgb}{0.0, 0.545,0.545}
+\definecolor{codeNumbers}{rgb}{0.5,0.5,0.5}
+\definecolor{codeString}{rgb}{1.0, 0.0, 1.0}
+\definecolor{light-gray}{gray}{0.90}
+
+%Code listing style named "mystyle"
+\lstdefinestyle{mystyle}{
+  backgroundcolor=\color{codeBakground},
+  commentstyle=\color{codeComment},
+  keywordstyle=\color{codeKeyword},
+  keywordstyle={[2]\color{codeKeyword2}}, % Built-in
+  numberstyle=\tiny\color{codeNumbers},
+  stringstyle=\color{codeString},
+  basicstyle=\ttfamily\footnotesize,
+  breakatwhitespace=false,
+  breaklines=true,
+  captionpos=b,
+  keepspaces=true,
+  numbers=left,
+  numbersep=5pt,
+  showspaces=false,
+  showstringspaces=false,
+  showtabs=false,
+  upquote=true,                      % requires textcomp
+  tabsize=2
+}
+
+%"mystyle" code listing set
+\lstset{style=mystyle}
+
+\newcommand{\pausa}{\pause} % Para usar una pausa en las presentaciones
+%\newcommand{\pausa}{}      % Para que NO salgan las pausas
+
+\begin{document}
+
+\begin{frame}
+    \titlepage
+\end{frame}
+
+\begin{frame}
+    \frametitle{Contenido}
+    \tableofcontents
+\end{frame}
+
+\input{contenido.tex}
+
+\end{document}
