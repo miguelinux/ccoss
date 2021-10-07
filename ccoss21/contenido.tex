@@ -1,33 +1,72 @@
 % ex: ts=2 sw=2 sts=2 et filetype=tex
 % SPDX-License-Identifier: CC-BY-SA-4.0
 
-\section{Sección 1}
+\section{¿Qué es Linux?}
 
-\begin{frame}[c]{Titulo}
-  Texto
-\end{frame}
+\begin{frame}[c]{Antes de empezar}
+  Descarga el código del kernel con:
+  \begin{itemize}
+    \item git clone git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git
+    \item git clone
+      \href{https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git}
+      {https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git}
+  \end{itemize}
 
-\begin{frame}[fragile]
-  \frametitle{Título}
-  Texto
   \vspace{\baselineskip}
-  \begin{lstlisting}[language=Python]
-  Codigo
-  \end{lstlisting}
-\end{frame}
+  otra manera de descargar es con:
+  \begin{itemize}
+    \item wget -c
+      \href{https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/clone.bundle}
+      {https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/clone.bundle}
+    \item curl -LO
+      \href{https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/clone.bundle}
+      {https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/clone.bundle}
+  \end{itemize}
 
-\section{Sección 2}
-
-\begin{frame}[c]{Titulo}
-  Texto
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{Título}
-  Texto
   \vspace{\baselineskip}
-  \begin{lstlisting}[language=Python]
-  Codigo
-  \end{lstlisting}
+  La información de los bundles esta en 
+  \href{https://www.kernel.org/cloning-linux-from-a-bundle.html}
+  {https://www.kernel.org/cloning-linux-from-a-bundle.html}
 \end{frame}
 
+\begin{frame}[c]{Linux}
+  \begin{itemize}
+    \item Linux es un núcleo mayormente libre semejante al núcleo de Unix.
+    \pausa
+    \item Linux es uno de los principales ejemplos de software libre y de
+      código abierto.
+    \pausa
+    \item Linux está licenciado bajo la GPL v2 salvo el hecho que tiene
+      blobs binarios no-libres.
+    \pausa
+    \item Está desarrollado por colaboradores de todo el mundo.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[c]{Tux}
+  \begin{columns}
+    \column{0.3\textwidth}
+      \begin{center}
+        \includegraphics[scale=0.1]{tux.png}
+      \end{center}
+    \column{0.7\textwidth}
+      \begin{itemize}
+        \item Tux es el nombre de la mascota oficial de Linux.
+        \pause
+        \item Creado por Larry Ewing en 1996
+        \pause
+        \item Es un pequeño pingüino de aspecto risueño y cómico basado
+          en una imagen que Linus Torvalds encontró en un servidor FTP.
+      \end{itemize}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[c]{¿Cómo contribuir?}
+  \begin{itemize}
+    \item Su modelo es por correo electrónico
+    \pausa
+    \item Los parches tienes que estar bien documentados
+    \pausa
+    \item Linux \emph{mainline} es la rama principal
+  \end{itemize}
+\end{frame}
