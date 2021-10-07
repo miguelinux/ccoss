@@ -1,0 +1,36 @@
+# vi: filetype=gitconfig
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+
+[user]
+	name = Miguel Bernal Marin
+[push]
+	default = simple
+[core]
+	editor = vim-git
+	autocrlf = input
+[alias]
+	fixline = log -1 --abbrev=12 --format='Fixes: %h (\"%s\")'
+	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+	lol = log --graph --decorate --pretty=oneline --abbrev-commit
+	lf = log --pretty=full
+	toKernel = send-email --annotate --cc="linux-kernel@vger.kernel.org"
+	toCLR = send-email --to=\"Clear Linux ML <dev@lists.clearlinux.org>\" --annotate --suppress-cc=all
+[hub]
+	protocol = https
+[color]
+	ui = auto
+[sendemail]
+	# http://felipec.wordpress.com/2009/10/25/git-send-email-tricks/
+	chainreplyto = false
+	# DPDK http://dpdk.org/dev
+	suppressfrom = true
+	confirm = always
+	envelopesender = auto
+[include]
+	path = personal-gitconfig
+	path = proxies
+[pull]
+	rebase = false
+[init]
+	defaultBranch = main
