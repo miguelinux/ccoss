@@ -1,0 +1,111 @@
+# vim: filetype=muttrc
+# https://wiki.archlinux.org/index.php/mutt
+#source "gpg2 -dq $HOME/.mutt/accounts.gpg |"
+
+# https://dev.mutt.org/trac/wiki/ConfigTricks
+source "~/.mutt/vim-mutt |"
+
+# Include private config (Multiple accounts)
+source '~/.mutt/private.muttrc'
+
+##
+## Multiple accoutns web help
+## https://www.df7cb.de/blog/2010/Using_multiple_IMAP_accounts_with_Mutt.html
+## https://gist.github.com/miguelmota/9456162
+##
+## Folder hooks
+#folder-hook gmail-user-name  'source ~/.mutt/gmail-uer-name.muttrc'
+#
+## Account hooks
+#account-hook gmail-user-name 'set imap_user=$my_account_user imap_pass=$my_accout_pass'
+#
+## Macros for switching accounts
+#macro index <f5> '<change-folder>imaps://imap.gmail.com<enter>'
+#macro index <f6> '<change-folder>imaps://private.com<enter>'
+#
+
+# Default account
+# This is symlink to the default muttrc
+source '~/.mutt/default.muttrc'
+
+# RECEIVE OPTIONS
+set imap_check_subscribed
+# Allow Mutt to open new imap connection automatically.
+unset imap_passive
+# Keep IMAP connection alive by polling intermittently (time in seconds).
+set imap_keepalive = 900
+# How often to check for new mail (time in seconds).
+set mail_check     = 1800
+
+# https://dev.mutt.org/trac/wiki/MuttGuide/Aliases
+set alias_file    = ~/.mutt/aliases
+set sort_alias    = alias
+set reverse_alias = yes
+source $alias_file
+
+set edit_headers =yes
+
+set mailcap_path  = ~/.mutt/mailcap
+
+set certificate_file = ~/.cache/mutt/certificates
+
+set sort=threads
+set sort_browser=date
+set sort_aux=reverse-last-date-received
+
+set pager_context=4 
+set pager_index_lines=10 
+set pager_stop 
+
+# Kernel Documentation
+set send_charset="us-ascii:utf-8"
+
+alternative_order text/plain text/enriched text/html
+auto_view text/html
+auto_view text/x-patch text/x-diff
+
+# Patches view
+color body brightred    default "^-.*"
+color body brightgreen  default "^[+].*"
+color body brightwhite  default "^diff --git.*"
+color body brightwhite  default "^index [a-f0-9].*"
+color body brightcyan   default "^@@.*@@"
+
+# Color scheme
+source "~/.mutt/vombatidae.mutt"
+color status brightgreen  blue
+
+#set sidebar_visible yes
+
+# Message Header Display
+# http://mutt.org/doc/manual/#msg-hdr-display
+ignore *
+unignore from date subject to cc
+unignore organization organisation x-mailer: x-newsreader: x-mailing-list:
+unignore posted-to:
+unignore Message-Id
+unignore Content-Type
+unignore List-Id
+unignore Reply-To:
+
+# Display the fields in this order
+hdr_order date from to cc subject
+
+# show the incoming mailboxes list (just like "mutt -y") and back when pressing "y"
+macro index,pager y "<change-folder>?<toggle-mailboxes>" "show incoming mailboxes list"
+bind browser y exit
+
+# some people actually like these settings
+set pager_stop
+bind pager <up> previous-line
+bind pager <down> next-line
+
+# Fetch email from imap
+bind index G imap-fetch-mail
+
+# Bind to I key in index view:
+macro index I  "<search>~F\n"                     "Search for next important"
+
+# Bint to I key in pager:
+macro pager I  "<exit><search>~F\n<display-message>" "Jump to next important"
+

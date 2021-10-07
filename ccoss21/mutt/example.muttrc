@@ -1,0 +1,28 @@
+# vim: filetype=muttrc
+# GENERAL OPTIONS
+set header_cache     = ~/.cache/mutt/example/headers
+set message_cachedir = ~/.cache/mutt/example/bodies
+# comment this out when not used in gmail
+unset record
+
+set signature="~/.mutt/signature-example"
+# load account aliases
+source ~/.mutt/aliases-example
+
+# REMOTE FOLDERS
+set folder    = 'imaps://'$my_user'@imap.gmail.com:993'
+set spoolfile = '+INBOX'
+set postponed = '+[Gmail]/Borradores'
+# uncomment this out when not used in gmail
+#set record    = '+Sent'
+
+# SEND OPTIONS
+set realname  = $my_name
+set from      = $my_user
+#set smtp_url  = 'smtp://'$my_user'@smtp.gmail.com:587/'
+set smtp_url  = 'smtps://'$my_user'@smtp.gmail.com:465/'
+set smtp_pass = $my_pass
+
+macro index 0  "<change-folder> =INBOX"<enter>
+macro index 1  "<change-folder> =Folder1"<enter>
+macro index 2  "<change-folder> =Folder2"<enter>

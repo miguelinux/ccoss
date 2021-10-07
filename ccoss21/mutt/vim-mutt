@@ -1,0 +1,11 @@
+#!/bin/bash
+# -*- mode: shell-script; indent-tabs-mode: nil; sh-basic-offset: 4; -*-
+# ex: ts=8 sw=4 sts=4 et filetype=sh
+
+if [ "x${DISPLAY}" != "x" ]; then
+    echo 'set editor="gvim -f"'
+    echo 'set visual="gvim -f"'
+else
+    echo 'set editor=vim'
+    echo 'set visual=vim'
+fi
