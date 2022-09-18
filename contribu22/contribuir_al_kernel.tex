@@ -5,6 +5,9 @@
 
 \usetheme{Boadilla}
 
+\definecolor{ccosscolor}{rgb}{0.0, 0.545, 0.545}
+\usecolortheme[named=ccosscolor]{structure}
+
 \setbeamertemplate{navigation symbols}{} % To remove the navigation symbols from the bottom of all slides
 
 \graphicspath{{../img/}}
@@ -17,16 +20,19 @@
 \usetikzlibrary{trees}
 
 \title{¿Cómo contribuir al kernel de Linux?}
-\author{Miguel Bernal Marin}
-\institute[Escuela]
+\author[\textcircled{cc} BY-SA]{Miguel Bernal Marin} % Your name
+
+\institute[]
 {
- Nombre de la Institución\\
-\medskip
-\textit{correo}
+Cumbre de Contribuidores de Open Source Software  \\
+https://github.com/miguelinux/ccoss
 }
 \date{
-    \today
-} % Date, can be changed to a custom date
+    20 de Septiembre de 2022
+}
+
+\logo{\includegraphics[height=0.5cm]{logo-ccoss_corto.png}}
+\newcommand{\nologo}{\setbeamertemplate{logo}{}} % command to set the logo to nothing
 
 %New colors defined below
 \definecolor{codeNumbers}{rgb}{0.5,0.5,0.5}
@@ -92,6 +98,9 @@
 \begin{frame}
     \titlepage
 \end{frame}
+
+\input{../ccoss21/intel-disclaimer.tex}
+\input{../ccoss21/about-me.tex}
 
 \begin{frame}
     \frametitle{Contenido}
