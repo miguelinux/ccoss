@@ -1,0 +1,164 @@
+% ex: ts=2 sw=2 sts=2 et filetype=tex
+% SPDX-License-Identifier: CC-BY-SA-4.0
+
+\section{¿Qué es Linux?}
+
+\begin{frame}[c]{Historia}
+  \begin{columns}
+    \column{0.6\textwidth}
+     \begin{itemize}
+      \item Linux comienza en 1991 como un proyecto personal del estudiante
+        finlandés \textbf{Linus Benedict Torvalds}$^{\hyperlink{creditos}{[1]}}$.
+      \pausa
+      \item Crea un nuevo núcleo de un sistema operativo libre, bajo la
+        \textbf{GNU General Public License v2} (GPL v2)
+      \pausa
+      \item El núcleo Linux resultante ha estado marcado por un crecimiento
+        constante a lo largo de su historia.
+     \end{itemize}
+    \column{0.4\textwidth}
+      \pausa
+      \begin{center}
+        \includegraphics[scale=0.6]{lfs/linus.png}
+      \end{center}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{El segundo anuncio en usenet$^{\hyperlink{creditos}{[2]}}$}
+  \begin{block}{}
+  \begin{verbatim}
+Newsgroups: comp.os.minix
+Subject: What would you like to see most in minix?
+Date: 25 Aug 91 20:57:08 GMT
+
+Hello everybody out there using minix -
+
+I'm doing a (free) operating system (just a hobby, won't be big and
+professional like gnu) for 386(486) AT clones.  This has been brewing
+since april, and is starting to get ready.  I'd like any feedback on
+things people like/dislike in minix, as my OS resembles it somewhat
+(same physical layout of the file-system (due to practical reasons)
+among other things).
+  \end{verbatim}
+  \end{block}
+\end{frame}
+
+\begin{frame}[c]{Historia de las versiones del kernel$^{\hyperlink{creditos}{[3]}}$}
+  \begin{center}
+    \includegraphics[scale=0.39]{lfs/linux_kernel_timeline.png}
+  \end{center}
+\end{frame}
+
+\begin{frame}[c]{Versiones activas del kernel}
+  Hay varias categorías principales en las que pueden caer los
+  lanzamientos del kernel$^{\hyperlink{creditos}{[4]}}$:
+
+  \vspace{\baselineskip}
+  \begin{description}
+    \item[Prepatch] Los kernels de preparche o "RC" (candidanto a
+      liberación) son versiones preliminares del kernel de la línea principal
+      (mainline) que están dirigidas principalmente a otros desarrolladores
+      de kernel y entusiastas de Linux.
+
+      \vspace{\baselineskip}
+      Deben compilarse desde la fuente y, por lo general, contienen nuevas
+      características que deben probarse antes de que puedan colocarse en
+      una versión estable.
+
+      \vspace{\baselineskip}
+      Linus Torvalds mantiene y publica los kernels previos al parche. 
+  \end{description}
+\end{frame}
+
+\begin{frame}[c]{Versiones activas del kernel}
+  \begin{description}
+    \item[Mainline] Linus Torvalds mantiene el árbol principal (mainline).
+      Es el árbol donde se presentan todas las funciones nuevas y donde
+      ocurre todo el desarrollo nuevo y emocionante.
+
+      \vspace{\baselineskip}
+      Los nuevos núcleos principales se lanzan cada 9 o 10 semanas. 
+  \end{description}
+\end{frame}
+
+\begin{frame}[c]{Versiones activas del kernel}
+  \begin{description}
+    \item[Stable] Después de que se lanza cada núcleo principal (mainline),
+      se considera "estable".
+
+      \vspace{\baselineskip}
+      Todas las correcciones de errores para un kernel estable se
+      retroalimentan (backported) desde el árbol de la línea principal
+      y las aplica un mantenedor de kernel estable designado.
+
+      \vspace{\baselineskip}
+      Por lo general, solo hay unas pocas versiones del kernel con corrección
+      de errores hasta que el siguiente kernel de la línea principal esté
+      disponible, a menos que se designe como un
+      "kernel de mantenimiento a largo plazo".
+
+      \vspace{\baselineskip}
+      Las actualizaciones estables del kernel se publican según sea
+      necesario, generalmente una vez a la semana. 
+  \end{description}
+\end{frame}
+
+\begin{frame}[c]{Versiones activas del kernel}
+  \begin{description}
+    \item[Longterm] Por lo general, se proporcionan varias versiones del
+      kernel de "\textbf{mantenimiento a largo plazo}" con el fin de
+      respaldar las correcciones de errores para los árboles del kernel
+      más antiguos.
+
+      \vspace{\baselineskip}
+      Solo se aplican correcciones de errores importantes a dichos núcleos
+      y, por lo general, no se lanzan con mucha frecuencia,
+      especialmente para los árboles más antiguos. 
+  \end{description}
+\end{frame}
+
+\begin{frame}[c]{Núcleos de lanzamiento a largo plazo}
+  \begin{table}[]
+  \begin{tabular}{llll}
+    \textbf{Versión} &  \textbf{Mantenedor} & \textbf{Liberado} & \textbf{Fin de vida} \\
+     & & & \textbf{proyectado} \\
+    \rowcolor{editorGray}
+    5.15&Greg Kroah-Hartman \& Sasha Levin 	&2021-10-31 	&Oct, 2023 \\
+    5.10&Greg Kroah-Hartman \& Sasha Levin 	&2020-12-13 	&Dec, 2026 \\
+    \rowcolor{editorGray}
+    5.4&Greg Kroah-Hartman \& Sasha Levin 	&2019-11-24 	&Dec, 2025 \\
+    4.19&Greg Kroah-Hartman \& Sasha Levin 	&2018-10-22 	&Dec, 2024 \\
+    \rowcolor{editorGray}
+    4.14&Greg Kroah-Hartman \& Sasha Levin 	&2017-11-12 	&Jan, 2024 \\
+    4.9&Greg Kroah-Hartman \& Sasha Levin 	&2016-12-11 	&Jan, 2023 \\
+  \end{tabular}
+  \end{table}
+\end{frame}
+
+
+
+\begin{frame}[c]{Historia de las versiones del kernel 4.x$^{\hyperlink{creditos}{[3]}}$}
+  \begin{center}
+    \includegraphics[scale=0.7]{lfs/linux_kernel_timeline_4.png}
+  \end{center}
+\end{frame}
+
+\begin{frame}[c]{Historia de las versiones del kernel 5.x$^{\hyperlink{creditos}{[3]}}$}
+  \begin{center}
+    \includegraphics[scale=0.7]{lfs/linux_kernel_timeline_5.png}
+  \end{center}
+\end{frame}
+
+
+%\section{}
+%
+%\begin{frame}[c]{}
+%  \vspace{\baselineskip}
+%\end{frame}
+%
+%\begin{frame}[fragile]
+%  \frametitle{ufw - Cortafuegos sin complicaciones}
+%  \begin{lstlisting}[language=Bash,numbers=none]
+%  \end{lstlisting}
+%\end{frame}
