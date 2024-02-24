@@ -1,0 +1,154 @@
+% ex: ts=2 sw=2 sts=2 et filetype=tex
+% SPDX-License-Identifier: CC-BY-SA-4.0
+
+\documentclass[aspectratio=169]{beamer}
+
+\usetheme{Boadilla}
+
+\definecolor{ccosscolor}{rgb}{0.0, 0.545, 0.545}
+\usecolortheme[named=ccosscolor]{structure}
+
+\setbeamertemplate{navigation symbols}{} % To remove the navigation symbols from the bottom of all slides
+
+\graphicspath{{../img/}}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc} %% https://tex.stackexchange.com/questions/664/why-should-i-use-usepackaget1fontenc
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{colortbl}
+\usepackage{tikz}
+\usetikzlibrary{trees}
+
+\title{¿Cómo contribuir al kernel de Linux?}
+\author[\textcircled{cc} BY-SA]{Miguel Bernal Marin} % Your name
+
+\institute[]
+{
+CCOSS + KCD Guadalajara 2024 \\
+\vspace{\baselineskip}
+Presentación: \href{https://github.com/miguelinux/ccoss}{https://github.com/miguelinux/ccoss} \\
+}
+\date{
+    24 de febrero de 2024
+}
+
+\logo{\includegraphics[height=1cm]{ccoss-kcd24.png}}
+\newcommand{\nologo}{\setbeamertemplate{logo}{}} % command to set the logo to nothing
+
+\titlegraphic{
+    \includegraphics[width=4cm]{ccoss-kcd24.png}
+}
+
+%New colors defined below
+\definecolor{codeNumbers}{rgb}{0.5,0.5,0.5}
+\definecolor{editorGray}{rgb}{0.95, 0.95, 0.95}
+\definecolor{editorOcher}{rgb}{1, 0.5, 0} % #FF7F00 -> rgb(239, 169, 0)
+\definecolor{editorGreen}{rgb}{0, 0.5, 0} % #007C00 -> rgb(0, 124, 0)
+\definecolor{brown}{rgb}{0.69,0.31,0.31}
+
+%Code listing style named "mystyle"
+\lstdefinestyle{mystyle}{
+  % General design
+  backgroundcolor=\color{editorGray},
+  basicstyle={\ttfamily},
+  numberstyle=\tiny\color{codeNumbers},
+  xleftmargin={0.2cm},
+  numbersep=5pt,
+  numbers=left,
+  stepnumber=1,
+  firstnumber=1,
+  numberfirstline=true,
+  % Code design
+  identifierstyle=\color{black},
+  keywordstyle=\color{blue}\bfseries,
+  ndkeywordstyle=\color{editorGreen}\bfseries,
+  stringstyle=\color{editorOcher}\ttfamily,
+  commentstyle=\color{brown}\ttfamily,
+  % Code
+  alsodigit={.:;},
+  tabsize=2,
+  showtabs=false,
+  showspaces=false,
+  showstringspaces=false,
+  extendedchars=true,
+  breaklines=true,
+  % Español
+  literate=%
+  {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
+  {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
+  {¡}{{!`}}1  {¿}{{?`}}1
+  {ñ}{{\~n}}1 {Ñ}{{\~N}}1
+}
+
+%"mystyle" code listing set
+\lstset{style=mystyle}
+
+%------------------------------------------------------------
+%The next block of commands puts the table of contents at the
+%beginning of each section and highlights the current section:
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{Contenido}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+%------------------------------------------------------------
+
+\newcommand{\pausa}{\pause} % Para usar una pausa en las presentaciones
+%\newcommand{\pausa}{}      % Para que NO salgan las pausas
+
+\begin{document}
+
+{
+\nologo
+\begin{frame}
+    \titlepage
+\end{frame}
+}
+
+{\nologo\input{../ccoss21/intel-disclaimer.tex}}
+\input{../ccoss21/about-me.tex}
+
+\begin{frame}
+    \frametitle{Contenido}
+    \tableofcontents
+\end{frame}
+
+\input{contenido.tex}
+
+\begin{frame}[c]{Créditos}
+  \label{creditos}
+  El material está basado en
+  \begin{enumerate}
+    \item
+      \href{https://es.wikipedia.org/wiki/Historia_de_Linux}
+      {https://es.wikipedia.org/wiki/Historia\_de\_Linux}
+    \item
+      \href{https://www.cs.cmu.edu/~awb/linux.history.html}
+      {https://www.cs.cmu.edu/\~{}awb/linux.history.html}
+    \item
+      \href{https://en.wikipedia.org/wiki/Linux_kernel_version_history}
+      {https://en.wikipedia.org/wiki/Linux\_kernel\_version\_history}
+    \item
+      \href{https://kernel.org/category/releases.html}
+      {https://kernel.org/category/releases.html}
+    \item
+      \href{https://www.kernel.org/doc/html/latest/process/index.html}
+      {https://www.kernel.org/doc/html/latest/process/index.html}
+    \item
+      \href{https://www.kernel.org/cloning-linux-from-a-bundle.html}
+      {https://www.kernel.org/cloning-linux-from-a-bundle.html}
+    \item
+      \href{https://www.kernel.org/doc/html/latest/process/howto.html}
+      {https://www.kernel.org/doc/html/latest/process/howto.html}
+    \item
+      \href{https://www.kernel.org/doc/html/latest/admin-guide/reporting-issues.html}
+      {https://www.kernel.org/doc/html/latest/admin-guide/reporting-issues.html}
+%    \item
+%      \href{}
+%      {}
+  \end{enumerate}
+\end{frame}
+
+\end{document}

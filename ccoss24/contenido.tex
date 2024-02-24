@@ -1,0 +1,465 @@
+% ex: ts=2 sw=2 sts=2 et filetype=tex
+% SPDX-License-Identifier: CC-BY-SA-4.0
+
+\begin{frame}[c]{Antes de empezar}
+  Descarga el código del kernel con:
+  \begin{itemize}
+    \item git clone git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git
+    \item git clone
+      \href{https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git}
+      {https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git}
+  \end{itemize}
+
+  \vspace{\baselineskip}
+  otra manera de descargar es usando bundles$^{\hyperlink{creditos}{[6]}}$:
+  \begin{itemize}
+    \item wget -c
+      \href{https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/clone.bundle}
+      {https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/clone.bundle}
+    \item curl -LO
+      \href{https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/clone.bundle}
+      {https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/clone.bundle}
+  \end{itemize}
+\end{frame}
+
+\section{¿Qué es Linux?}
+
+\begin{frame}[c]{Historia}
+  \begin{columns}
+    \column{0.4\textwidth}
+      \begin{center}
+        \includegraphics[scale=0.6]{lfs/linus.png}
+      \end{center}
+    \column{0.6\textwidth}
+     \begin{itemize}
+      \item Linux comienza en 1991 como un proyecto personal del estudiante
+        finlandés \textbf{Linus Benedict Torvalds}$^{\hyperlink{creditos}{[1]}}$.
+      \pausa
+      \item Crea un nuevo núcleo de un sistema operativo libre, bajo la
+        \textbf{GNU General Public License v2} (GPL v2)
+      \pausa
+      \item El núcleo Linux resultante ha estado marcado por un crecimiento
+        constante a lo largo de su historia.
+     \end{itemize}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{El segundo anuncio en usenet$^{\hyperlink{creditos}{[2]}}$}
+  \begin{block}{}
+  \begin{verbatim}
+Newsgroups: comp.os.minix
+Subject: What would you like to see most in minix?
+Date: 25 Aug 91 20:57:08 GMT
+
+Hello everybody out there using minix -
+
+I'm doing a (free) operating system (just a hobby, won't be big and
+professional like gnu) for 386(486) AT clones.  This has been brewing
+since april, and is starting to get ready.  I'd like any feedback on
+things people like/dislike in minix, as my OS resembles it somewhat
+(same physical layout of the file-system (due to practical reasons)
+among other things).
+  \end{verbatim}
+  \end{block}
+\end{frame}
+
+\begin{frame}[c]{Historia de las versiones del kernel$^{\hyperlink{creditos}{[3]}}$}
+  \begin{center}
+    \includegraphics[scale=0.39]{lfs/linux_kernel_timeline.png}
+  \end{center}
+\end{frame}
+
+\begin{frame}[c]{Versiones activas del kernel}
+  Hay varias categorías principales en las que pueden caer los
+  lanzamientos del kernel$^{\hyperlink{creditos}{[4]}}$:
+
+  \vspace{\baselineskip}
+  \begin{description}
+    \item[Prepatch] Los kernels de preparche o "RC" (candidanto a
+      liberación) son versiones preliminares del kernel de la línea principal
+      (mainline) que están dirigidas principalmente a otros desarrolladores
+      de kernel y entusiastas de Linux.
+
+      \vspace{\baselineskip}
+      Deben compilarse desde la fuente y, por lo general, contienen nuevas
+      características que deben probarse antes de que puedan colocarse en
+      una versión estable.
+
+      \vspace{\baselineskip}
+      Linus Torvalds mantiene y publica los kernels previos al parche.
+  \end{description}
+\end{frame}
+
+\begin{frame}[c]{Versiones activas del kernel}
+  \begin{description}
+    \item[Mainline] Linus Torvalds mantiene el árbol principal (mainline).
+      Es el árbol donde se presentan todas las funciones nuevas y donde
+      ocurre todo el desarrollo nuevo y emocionante.
+
+      \vspace{\baselineskip}
+      Los nuevos núcleos principales se lanzan cada 9 o 10 semanas.
+  \end{description}
+\end{frame}
+
+\begin{frame}[c]{Versiones activas del kernel}
+  \begin{description}
+    \item[Stable] Después de que se lanza cada núcleo principal (mainline),
+      se considera "estable".
+
+      \vspace{\baselineskip}
+      Todas las correcciones de errores para un kernel estable se
+      retroalimentan (backported) desde el árbol de la línea principal
+      y las aplica un mantenedor de kernel estable designado.
+
+      \vspace{\baselineskip}
+      Por lo general, solo hay unas pocas versiones del kernel con corrección
+      de errores hasta que el siguiente kernel de la línea principal esté
+      disponible, a menos que se designe como un
+      "kernel de mantenimiento a largo plazo".
+
+      \vspace{\baselineskip}
+      Las actualizaciones estables del kernel se publican según sea
+      necesario, generalmente una vez a la semana.
+  \end{description}
+\end{frame}
+
+\begin{frame}[c]{Versiones activas del kernel}
+  \begin{description}
+    \item[Longterm] Por lo general, se proporcionan varias versiones del
+      kernel de "\textbf{mantenimiento a largo plazo}" con el fin de
+      respaldar las correcciones de errores para los árboles del kernel
+      más antiguos.
+
+      \vspace{\baselineskip}
+      Solo se aplican correcciones de errores importantes a dichos núcleos
+      y, por lo general, no se lanzan con mucha frecuencia,
+      especialmente para los árboles más antiguos.
+  \end{description}
+\end{frame}
+
+\begin{frame}[c]{Núcleos de lanzamiento a largo plazo}
+  \begin{table}[]
+  \begin{tabular}{llll}
+    \textbf{Versión} &  \textbf{Mantenedor} & \textbf{Liberado} & \textbf{Fin de vida} \\
+     & & & \textbf{proyectado} \\
+    \rowcolor{editorGray}
+    5.15&Greg Kroah-Hartman \& Sasha Levin 	&2021-10-31 	&Oct, 2023 \\
+    5.10&Greg Kroah-Hartman \& Sasha Levin 	&2020-12-13 	&Dec, 2026 \\
+    \rowcolor{editorGray}
+    5.4&Greg Kroah-Hartman \& Sasha Levin 	&2019-11-24 	&Dec, 2025 \\
+    4.19&Greg Kroah-Hartman \& Sasha Levin 	&2018-10-22 	&Dec, 2024 \\
+    \rowcolor{editorGray}
+    4.14&Greg Kroah-Hartman \& Sasha Levin 	&2017-11-12 	&Jan, 2024 \\
+    4.9&Greg Kroah-Hartman \& Sasha Levin 	&2016-12-11 	&Jan, 2023 \\
+  \end{tabular}
+  \end{table}
+\end{frame}
+
+\begin{frame}[c]{Historia de las versiones del kernel 4.x$^{\hyperlink{creditos}{[3]}}$}
+  \begin{center}
+    \includegraphics[scale=0.7]{lfs/linux_kernel_timeline_4.png}
+  \end{center}
+\end{frame}
+
+\begin{frame}[c]{Historia de las versiones del kernel 5.x$^{\hyperlink{creditos}{[3]}}$}
+  \begin{center}
+    \includegraphics[scale=0.7]{lfs/linux_kernel_timeline_5.png}
+  \end{center}
+\end{frame}
+
+\section{Bienvenida}
+
+\begin{frame}[c]{Trabajando con la comunidad de desarrollo del kernel}
+  \begin{columns}
+    \column{0.6\textwidth}
+      Entonces, ¿quieres ser un desarrollador del kernel de
+      Linux?$^{\hyperlink{creditos}{[5]}}$
+
+      \vspace{\baselineskip}
+      \begin{center}
+        ¡Bienvenidos!
+      \end{center}
+
+      \vspace{\baselineskip}
+      Si bien hay mucho que aprender sobre el kernel en un sentido técnico,
+      también es importante aprender cómo funciona esta comunidad.
+    \column{0.4\textwidth}
+      \begin{center}
+        \includegraphics[scale=0.5]{tux.png}
+      \end{center}
+  \end{columns}
+\end{frame}
+
+\section{Como hacer el desarrollo del kernel de Linux}
+
+\begin{frame}[c]{Introducción}
+  Entonces, ¿quieres aprender a convertirte en un desarrollador del kernel
+  de Linux? O su gerente le ha dicho: "Escriba un controlador de Linux para
+  este dispositivo"$^{\hyperlink{creditos}{[7]}}$.
+
+  \vspace{\baselineskip}
+  El kernel está escrito \textbf{principalmente en C}, con algunas partes
+  dependientes de la arquitectura escritas en \textbf{ensamblador}.
+  Se requiere una \underline{buena
+  comprensión de C} para el desarrollo del kernel. No se requiere
+  el lenguaje ensamblador (de cualquier arquitectura) a menos que planee
+  hacer un desarrollo de bajo nivel para esa arquitectura.
+
+\end{frame}
+
+\begin{frame}[c]{Introducción}
+  Aunque no son un buen sustituto de una sólida educación C y/o años de
+  experiencia, los siguientes libros son buenos, en todo caso,
+  como referencia$^{\hyperlink{creditos}{[7]}}$:
+
+  \vspace{\baselineskip}
+  \begin{itemize}
+    \item “El lenguaje de programación C” de Kernighan y Ritchie [Prentice Hall]
+    \item “Programación práctica en C” por Steve Oualline [O'Reilly]
+    \item “C: Manual de referencia” de Harbison y Steele [Prentice Hall]
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[c]{Introducción}
+  El kernel está escrito usando GNU C y la cadena de herramientas GNU.
+  Si bien se adhiere al estándar \textbf{ISO
+  C89}\footnote{Información desactualizada: oportunidad para contribuir},
+  utiliza una serie de extensiones
+  que no se incluyen en el estándar$^{\hyperlink{creditos}{[7]}}$.
+
+  \vspace{\baselineskip}
+  El kernel es un \textbf{entorno C independiente}, que \textbf{no}
+  depende de la biblioteca C estándar,
+  por lo que algunas partes del estándar C \underline{no son compatibles}.
+
+  \vspace{\baselineskip}
+  No se permiten divisiones largas largas arbitrarias ni puntos flotantes.
+  A veces puede ser difícil comprender las suposiciones que tiene el núcleo
+  sobre la cadena de herramientas y las extensiones que utiliza y,
+  lamentablemente, no existe una referencia definitiva para ellas.
+\end{frame}
+
+\begin{frame}[c]{Introducción}
+  Recuerde que está tratando de aprender a \textbf{trabajar con la comunidad de
+  desarrollo existente}. Es un grupo diverso de personas, con
+  \textbf{altos estándares}
+  de codificación, estilo y procedimiento$^{\hyperlink{creditos}{[7]}}$.
+
+  \vspace{\baselineskip}
+  Estos estándares se han creado a lo largo del tiempo en función de lo que
+  han descubierto que funciona mejor para un equipo tan grande y
+  geográficamente disperso. Trate de \textbf{aprender lo más posible}
+  sobre estos estándares con anticipación, ya que están bien documentados;
+  \underline{no espere} que la gente se adapte a su forma de hacer
+  las cosas o la de su empresa.
+\end{frame}
+
+\begin{frame}[c]{Asuntos legales}
+  El código fuente del kernel de Linux se publica bajo \textbf{licencia GPL}.
+  Consulte el archivo COPYING en el directorio principal del árbol de
+  fuentes$^{\hyperlink{creditos}{[7]}}$.
+
+  \vspace{\baselineskip}
+  Las reglas de licencia del kernel de Linux y cómo usar los identificadores
+  \textbf{SPDX} en el código fuente se describen en
+  \href{https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/process/license-rules.rst}
+  {Documentation/process/license-rules.rst}.
+
+  \vspace{\baselineskip}
+  Si tiene más preguntas sobre la licencia, comuníquese con un abogado y no
+  pregunte en la lista de correo del kernel de Linux. Las personas en las
+  listas de correo no son abogados y no debe confiar en sus declaraciones
+  sobre asuntos legales.
+
+  \vspace{\baselineskip}
+  Para preguntas y respuestas comunes sobre la GPL, consulte:
+
+  \vspace{\baselineskip}
+  \href{https://www.gnu.org/licenses/gpl-faq.html}
+  {https://www.gnu.org/licenses/gpl-faq.html}
+\end{frame}
+
+\begin{frame}[c]{Documentación}
+  El árbol de fuentes del kernel de Linux tiene una gran variedad de
+  \textbf{documentos que son invaluables para aprender a interactuar} con la
+  comunidad del kernel$^{\hyperlink{creditos}{[7]}}$.
+
+  \vspace{\baselineskip}
+  Cuando se agregan nuevas funciones al kernel, se recomienda que también
+  se agreguen \textbf{nuevos archivos de documentación} que expliquen cómo
+  usar la función.
+
+  \vspace{\baselineskip}
+  Cuando un cambio en el kernel hace que cambie la interfaz que el kernel
+  expone al espacio de usuario, se recomienda que envíe la información o
+  un parche a las páginas del manual que explique el cambio al mantenedor
+  de las páginas del manual \textbf{mtk.manpages@gmail.com},
+  y copie (CC) la lista
+  \textbf{linux-api@vger.kernel.org}.
+\end{frame}
+
+\begin{frame}[c]{Convertirse en un desarrollador de kernel}
+  Si no sabe nada sobre el desarrollo del kernel de Linux, debe consultar
+  el proyecto \textbf{Linux KernelNewbies}$^{\hyperlink{creditos}{[7]}}$:
+
+  \begin{block}{}
+    \begin{center}
+      \href{https://kernelnewbies.org}{https://kernelnewbies.org}
+    \end{center}
+  \end{block}
+
+  \vspace{\baselineskip}
+  Consiste en una lista de correo útil donde puede hacer casi cualquier
+  tipo de pregunta básica sobre el desarrollo del kernel
+  (asegúrese de buscar primero en los archivos, antes de preguntar algo que
+  ya se haya respondido en el pasado).
+
+  \vspace{\baselineskip}
+  También tiene un canal \textbf{IRC} que puede
+  utilizar para hacer preguntas en tiempo real y una gran cantidad de
+  documentación útil que es útil para aprender sobre el desarrollo del
+  kernel de Linux.
+
+\end{frame}
+
+\begin{frame}[c]{Convertirse en un desarrollador de kernel}
+  El sitio web tiene \textbf{información básica} sobre la organización del
+  código, los subsistemas y los proyectos actuales (tanto dentro como fuera del
+  árbol). También describe información logística básica, como cómo compilar
+  un núcleo y aplicar un parche$^{\hyperlink{creditos}{[7]}}$.
+
+  \vspace{\baselineskip}
+  Si no sabe por dónde quiere empezar, pero quiere buscar alguna tarea
+  para empezar a hacer para unirse a la comunidad de desarrollo del kernel,
+  vaya al proyecto Linux Kernel Janitor:
+
+  \begin{exampleblock}{}
+    \begin{center}
+      \href{https://kernelnewbies.org/KernelJanitors}
+        {https://kernelnewbies.org/KernelJanitors}
+    \end{center}
+  \end{exampleblock}
+
+  Es un gran lugar para comenzar. Describe una lista de problemas
+  \textbf{relativamente simples} que deben limpiarse y corregirse dentro
+  del árbol de fuentes del kernel de Linux. Trabajando con los
+  desarrolladores a cargo de este proyecto, aprenderá los conceptos
+  básicos para colocar su parche en el árbol del kernel de Linux, y
+  posiblemente se le indicará en qué dirección trabajar a continuación,
+  si aún no tiene una idea.
+\end{frame}
+
+\begin{frame}[c]{Convertirse en un desarrollador de kernel}
+  Antes de realizar modificaciones reales al código del kernel de Linux,
+  es imperativo comprender cómo funciona el código en cuestión.
+
+  \vspace{\baselineskip}
+  Para este propósito, nada mejor que \textbf{leerlo directamente}
+  (la mayoría de los pedacitos están bien comentados), quizás incluso con
+  la ayuda de herramientas especializadas.
+
+  \vspace{\baselineskip}
+  Una de esas herramientas que se recomienda especialmente es el proyecto
+  \textbf{Linux Cross-Reference}, que puede presentar el código fuente en
+  un formato de página web indexado y autorreferencial. Puede encontrar
+  un excelente repositorio actualizado del código del kernel en:
+
+  \begin{exampleblock}{}
+    \begin{center}
+      \href{https://elixir.bootlin.com/}{https://elixir.bootlin.com/}
+    \end{center}
+  \end{exampleblock}
+\end{frame}
+
+\begin{frame}[c]{El proceso de desarrollo}
+  El proceso de desarrollo del kernel de Linux actualmente consta de
+  algunas "\textbf{ramas}" diferentes del kernel principal y muchas
+  ramas del kernel específicas de subsistemas diferentes.
+  Estas diferentes ramas son$^{\hyperlink{creditos}{[7]}}$:
+
+  \vspace{\baselineskip}
+  \begin{itemize}
+    \item Árbol principal (\textbf{mainline}) de Linus
+    \item Varios árboles estables con múltiples números principales
+    \item Árboles específicos del \href{https://git.kernel.org/}{subsistema}
+    \item Árbol de pruebas de integración \textbf{linux-next}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[c]{Informes de problemas}
+
+  \begin{itemize}
+    \item ¿Se enfrenta a una regresión con un \textbf{kernel vainilla}
+      de la misma serie de la rama estable o de largo plazo?
+    \item ¿Todavía es mantenida?
+  \end{itemize}
+
+  \vspace{\baselineskip}
+  Entonces busque en \href{https://lore.kernel.org/lkml/}{LKML} y en
+  los archivos de la \href{lista de correo
+  estable}{https://lore.kernel.org/stable/} de Linux para encontrar
+  informes coincidentes para unirse. Si no encuentra ninguno, instale
+  la \href{https://kernel.org/}{última versión de esa
+  serie}$^{\hyperlink{creditos}{[8]}}$.
+
+  \vspace{\baselineskip}
+  Si aún muestra el problema, repórtelo a la lista de correo estable
+  (\textbf{stable@vger.kernel.org}) y copie (CC)la lista de regresiones
+  (\textbf{regressions@lists.linux.dev}); idealmente, también copie (CC)
+  el mantenedor y la lista de correo para el subsistema en cuestión.
+\end{frame}
+
+\begin{frame}[c]{Informes de problemas}
+  En todos los demás casos, intente averiguar qué parte del kernel podría
+  estar causando el problema. Consulte el archivo
+  \href{https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/MAINTAINERS}
+  {MAINTAINERS} para saber cómo esperan que los desarrolladores
+  sean informados sobre los problemas, que la mayoría de las veces será
+  por correo electrónico con una lista de correo en copia
+  (CC)$^{\hyperlink{creditos}{[8]}}$.
+
+  \vspace{\baselineskip}
+  Verifique los archivos del destino para buscar informes coincidentes;
+  busque en \href{https://lore.kernel.org/lkml/}{LKML} y en la web también.
+  Si no encuentra ninguno para unirse, instale el kernel principal más
+  reciente. Si el problema está presente allí, envíe un informe.
+
+\end{frame}
+
+\begin{frame}[c]{Informes de problemas}
+  El problema se solucionó allí, pero ¿le gustaría verlo resuelto en una
+  serie estable o a largo plazo aún compatible?.
+
+  \vspace{\baselineskip}
+  Entonces instale su última versión. Si muestra el problema, busque el
+  cambio que lo arregló en la línea principal y verifique si el
+  \textbf{backporting} está en proceso o fue descartado; si no es
+  ninguno, pregunte a quienes manejaron el
+  cambio$^{\hyperlink{creditos}{[8]}}$.
+
+  \vspace{\baselineskip}
+  \begin{alertblock}{Observaciones generales}
+    Al instalar y probar un kernel como se describe anteriormente,
+    asegúrese de que sea estándar (\textbf{vainilla}) (sin parches y sin
+    módulos complementarios).
+
+    \vspace{\baselineskip}
+    También asegúrese de que esté construido y funcionando en un
+    entorno saludable y que no esté contaminado antes de que ocurra
+    el problema.
+  \end{alertblock}
+
+\end{frame}
+
+%\section{}
+%
+%\begin{frame}[c]{}
+%  \vspace{\baselineskip}
+%\end{frame}
+%
+%\begin{frame}[fragile]
+%  \frametitle{ufw - Cortafuegos sin complicaciones}
+%  \begin{lstlisting}[language=Bash,numbers=none]
+%  \end{lstlisting}
+%\end{frame}
